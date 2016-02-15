@@ -1,0 +1,12 @@
+{
+  "jspm": {
+    "name": "gist_lazy_loader",
+    "devDependencies": {
+      "plugin-babel": "npm:systemjs-plugin-babel@^0.0.2"
+    }
+  },
+  "devDependencies": {
+    "jspm": "^0.17.0-beta.6",
+    "jspm-dev-server": "^0.2.1"
+  }
+}
