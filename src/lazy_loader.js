@@ -1,46 +1,69 @@
 import fetchJsonp from 'fetch-jsonp'
 
-export function lazyLoad() {
+let loadedStylesheets = {}
 
-  let gists     = Array.from(document.getElementsByTagName('gist'))
-  let loadedCss = {}
+const gistNotValid = function (gist) {
+  return !gist.hasAttribute('data-src')
+}
+
+const jsonUrl = function (url) {
+  return url.replace(/\.js\b/, '.json')
+}
+
+const stylesheetShouldBeLoaded = function (stylesheet) {
+  return !loadedStylesheets[stylesheet]
+}
+
+const stylesheetLoaded = function (stylesheet) {
+  loadedStylesheets[stylesheet] = true
+}
+
+const insertStylesheetElement = function (gist, href) {
+  let stylesheetElement = document.createElement('link')
+  
+  stylesheetElement.setAttribute('rel', 'stylesheet')
+  stylesheetElement.setAttribute('type', 'text/css')
+  stylesheetElement.setAttribute('href', href)
+  
+  gist.parentNode.insertBefore(stylesheetElement, gist.nextSibling)
+}
+
+const insertGistElement = function (gist, html) {
+  let gistElement = document.createElement('div')
+
+  gistElement.innerHTML = html
+
+  gist.parentNode.insertBefore(gistElement, gist.nextSibling) 
+}
+
+export function lazyLoad () {
+  let gists = Array.from(document.getElementsByTagName('gist'))
 
   gists.forEach(function(gist) {
 
-    if (!gist.hasAttribute('data-src')) { return; }
+    if (gistNotValid(gist)) { return; }
 
-    let url     = gist.getAttribute('data-src')
-    let jsonUrl = url.replace(/\.js\b/, '.json')
+    setTimeout(function (){
 
-    setTimeout(function(){
-
-      fetchJsonp(jsonUrl)
-        .then(function(response) {
+      fetchJsonp(jsonUrl(gist.getAttribute('data-src')))
+        .then(function (response) {
           return response.json()
-        }).then(function(json) {
+        }).then(function (json) {
+          window.requestAnimationFrame(function () {
 
-          window.requestAnimationFrame(function(){
-            let gistDiv = document.createElement('div')
-            gistDiv.innerHTML = json.div
+            if(stylesheetShouldBeLoaded(json.stylesheet)) {
+              insertStylesheetElement(gist, json.stylesheet)
 
-            if(!loadedCss[json.stylesheet]) {
-              let stylesheet = document.createElement('link')
-              stylesheet.setAttribute('rel', 'stylesheet')
-              stylesheet.setAttribute('type', 'text/css')
-              stylesheet.setAttribute('href', json.stylesheet)
-              gist.parentNode.insertBefore(stylesheet, gist.nextSibling)
-
-              loadedCss[json.stylesheet] = true
+              stylesheetLoaded(json.stylesheet)
             }
 
-            gist.parentNode.insertBefore(gistDiv, gist.nextSibling)
+            insertGistElement(gist, json.div)
           })
 
-        }).catch(function(ex) {
+        }).catch(function (ex) {
           console.log('parsing failed', ex)
         })
      
     }, 0)
   })
 }
-
