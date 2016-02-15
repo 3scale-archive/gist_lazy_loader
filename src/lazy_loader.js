@@ -1,10 +1,12 @@
+import fetchJsonp from 'fetch-jsonp'
+
 export function lazyLoad() {
 
   var gists     = Array.from(document.getElementsByTagName('gist'))
   var loadedCss = {}
 
   gists.forEach(function(gist) {
-
+    
     if (!gist.hasAttribute('data-src')) { return; }
 
     var url     = gist.getAttribute('data-src')
@@ -12,36 +14,32 @@ export function lazyLoad() {
 
     setTimeout(function(){
 
-      // fetchJsonp('/users.jsonp')
-      //   .then(function(response) {
-      //     return response.json()
-      //   }).then(function(json) {
-      //     console.log('parsed json', json)
-      //   }).catch(function(ex) {
-      //     console.log('parsing failed', ex)
-      //   })
+      fetchJsonp(jsonUrl)
+        .then(function(response) {
+          return response.json()
+        }).then(function(json) {
 
-        // $.ajax({
-        //   url: jsonUrl, 
-        //   dataType: 'jsonp',
-        //   success: function (data) {
-        //     window.requestAnimationFrame(function(){
-        //       var gistDiv = document.createElement('div')
-        //       gistDiv.innerHTML = data.div
+          window.requestAnimationFrame(function(){
+            var gistDiv = document.createElement('div')
+            gistDiv.innerHTML = json.div
 
-        //       if(!css[data.stylesheet]) {
-        //         var stylesheet = document.createElement('link')
-        //         stylesheet.setAttribute('rel', 'stylesheet')
-        //         stylesheet.setAttribute('type', 'text/css')
-        //         stylesheet.setAttribute('href', data.stylesheet)
-        //         vlnka.parentNode.insertBefore(stylesheet, vlnka.nextSibling)
-        //         css[data.stylesheet] = true
-        //       }
+            if(!loadedCss[json.stylesheet]) {
+              var stylesheet = document.createElement('link')
+              stylesheet.setAttribute('rel', 'stylesheet')
+              stylesheet.setAttribute('type', 'text/css')
+              stylesheet.setAttribute('href', json.stylesheet)
+              gist.parentNode.insertBefore(stylesheet, gist.nextSibling)
 
-        //       vlnka.parentNode.insertBefore(gistDiv, vlnka.nextSibling)
-        //     }) 
-        //   }
-        // })      
+              loadedCss[json.stylesheet] = true
+            }
+
+            gist.parentNode.insertBefore(gistDiv, gist.nextSibling)
+          })
+
+        }).catch(function(ex) {
+          console.log('parsing failed', ex)
+        })
+     
     }, 0)
   })
 }

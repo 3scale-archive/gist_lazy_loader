@@ -1,8 +1,15 @@
 {
   "jspm": {
     "name": "gist_lazy_loader",
+    "dependencies": {
+      "es6-promise": "npm:es6-promise@^3.1.2",
+      "fetch-jsonp": "npm:fetch-jsonp@^1.0.0"
+    },
     "devDependencies": {
       "plugin-babel": "npm:systemjs-plugin-babel@^0.0.2"
+    },
+    "peerDependencies": {
+      "process": "github:jspm/nodelibs-process@^0.2.0-alpha"
     }
   },
   "devDependencies": {
