@@ -25,7 +25,7 @@ const insertStylesheetElement = function (gist, href) {
   stylesheetElement.setAttribute('type', 'text/css')
   stylesheetElement.setAttribute('href', href)
   
-  gist.parentNode.insertBefore(stylesheetElement, gist.nextSibling)
+  gist.appendChild(stylesheetElement)
 }
 
 const insertGistElement = function (gist, html) {
@@ -33,7 +33,7 @@ const insertGistElement = function (gist, html) {
 
   gistElement.innerHTML = html
 
-  gist.parentNode.insertBefore(gistElement, gist.nextSibling) 
+  gist.appendChild(gistElement)
 }
 
 export function lazyLoad () {
