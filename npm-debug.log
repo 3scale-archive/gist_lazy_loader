@@ -1,0 +1,100 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/Cellar/node/5.1.0/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'publish',
+1 verbose cli   '.' ]
+2 info using npm@3.3.12
+3 info using node@v5.1.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/michal/Desktop/apps/gist_lazy_loader',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/michal/.npm/gist_lazy_loader/0.1.0/package.tgz not in flight; packing
+9 info lifecycle gist_lazy_loader@0.1.0~prepublish: gist_lazy_loader@0.1.0
+10 silly lifecycle gist_lazy_loader@0.1.0~prepublish: no script for prepublish, continuing
+11 verbose tar pack [ '/Users/michal/.npm/gist_lazy_loader/0.1.0/package.tgz',
+11 verbose tar pack   '/Users/michal/Desktop/apps/gist_lazy_loader' ]
+12 verbose tarball /Users/michal/.npm/gist_lazy_loader/0.1.0/package.tgz
+13 verbose folder /Users/michal/Desktop/apps/gist_lazy_loader
+14 verbose addLocalTarball adding from inside cache /Users/michal/.npm/gist_lazy_loader/0.1.0/package.tgz
+15 silly cache afterAdd gist_lazy_loader@0.1.0
+16 verbose afterAdd /Users/michal/.npm/gist_lazy_loader/0.1.0/package/package.json not in flight; writing
+17 verbose afterAdd /Users/michal/.npm/gist_lazy_loader/0.1.0/package/package.json written
+18 silly publish { name: 'gist_lazy_loader',
+18 silly publish   version: '0.1.0',
+18 silly publish   description: 'Lazy loader for github git',
+18 silly publish   main: 'src/lazy_loader.js',
+18 silly publish   git: 'https://github.com/3scale/gist_lazy_loader',
+18 silly publish   registry: 'npm',
+18 silly publish   jspmPackage: true,
+18 silly publish   format: 'amd',
+18 silly publish   jspm:
+18 silly publish    { dependencies:
+18 silly publish       { 'es6-promise': 'npm:es6-promise@^3.1.2',
+18 silly publish         'fetch-jsonp': 'npm:fetch-jsonp@^1.0.0' },
+18 silly publish      devDependencies: { 'plugin-babel': 'npm:systemjs-plugin-babel@^0.0.2' },
+18 silly publish      peerDependencies: { process: 'github:jspm/nodelibs-process@^0.2.0-alpha' } },
+18 silly publish   devDependencies: { jspm: '^0.17.0-beta.6', 'jspm-dev-server': '^0.2.1' },
+18 silly publish   readme: '# Gist Lazy Loader\nLazy loader for Github Gist\n\n',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: '0aa9bf77fec9fae4f295ecb7c59f2852b14e8146',
+18 silly publish   _id: 'gist_lazy_loader@0.1.0',
+18 silly publish   scripts: {},
+18 silly publish   _shasum: '3f417a73712c92524f1a640422b899e766592f4c',
+18 silly publish   _from: '.' }
+19 verbose getPublishConfig undefined
+20 silly mapToRegistry name gist_lazy_loader
+21 silly mapToRegistry using default registry
+22 silly mapToRegistry registry https://registry.npmjs.org/
+23 silly mapToRegistry uri https://registry.npmjs.org/gist_lazy_loader
+24 verbose publish registryBase https://registry.npmjs.org/
+25 silly publish uploading /Users/michal/.npm/gist_lazy_loader/0.1.0/package.tgz
+26 verbose request uri https://registry.npmjs.org/gist_lazy_loader
+27 verbose request sending authorization for write operation
+28 info attempt registry request try #1 at 4:36:01 PM
+29 verbose request using bearer token for auth
+30 verbose request id 7965cb9571d5c2ba
+31 http request PUT https://registry.npmjs.org/gist_lazy_loader
+32 http 403 https://registry.npmjs.org/gist_lazy_loader
+33 verbose headers { 'content-type': 'application/json',
+33 verbose headers   'cache-control': 'max-age=300',
+33 verbose headers   'content-length': '95',
+33 verbose headers   'accept-ranges': 'bytes',
+33 verbose headers   date: 'Tue, 16 Feb 2016 15:36:02 GMT',
+33 verbose headers   via: '1.1 varnish',
+33 verbose headers   connection: 'keep-alive',
+33 verbose headers   'x-served-by': 'cache-ams4121-AMS',
+33 verbose headers   'x-cache': 'MISS',
+33 verbose headers   'x-cache-hits': '0',
+33 verbose headers   'x-timer': 'S1455636961.804942,VS0,VE1041' }
+34 verbose request invalidating /Users/michal/.npm/registry.npmjs.org/gist_lazy_loader on PUT
+35 error publish Failed PUT 403
+36 verbose stack Error: "You cannot publish over the previously published version 0.1.0." : gist_lazy_loader
+36 verbose stack     at makeError (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:264:12)
+36 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:252:14)
+36 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:172:14)
+36 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:198:22)
+36 verbose stack     at emitTwo (events.js:87:13)
+36 verbose stack     at Request.emit (events.js:172:7)
+36 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1082:10)
+36 verbose stack     at emitOne (events.js:82:20)
+36 verbose stack     at Request.emit (events.js:169:7)
+36 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1009:12)
+37 verbose statusCode 403
+38 verbose pkgid gist_lazy_loader
+39 verbose cwd /Users/michal/Desktop/apps/gist_lazy_loader
+40 error Darwin 14.5.0
+41 error argv "/usr/local/Cellar/node/5.1.0/bin/node" "/usr/local/bin/npm" "publish" "."
+42 error node v5.1.0
+43 error npm  v3.3.12
+44 error code E403
+45 error "You cannot publish over the previously published version 0.1.0." : gist_lazy_loader
+46 error If you need help, you may report this error at:
+46 error     <https://github.com/npm/npm/issues>
+47 verbose exit [ 1, true ]
