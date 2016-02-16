@@ -2,7 +2,7 @@
   "name": "gist_lazy_loader",
   "version": "0.1.0",
   "description": "Lazy loader for github git",
-  "main": "gist_lazy_loader.js",
+  "main": "src/lazy_loader.js",
   "git": "https://github.com/3scale/gist_lazy_loader",
   "registry": "npm",
   "jspmPackage": true,
