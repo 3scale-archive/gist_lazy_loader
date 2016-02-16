@@ -2,3 +2,4 @@ node_modules
 jspm_packages/**/*
 /localhost.*
 .DS_Store
+npm-debug.log
