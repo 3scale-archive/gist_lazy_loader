@@ -15,7 +15,9 @@ SystemJS.config({
   },
 
   packages: {
-    "gist_lazy_loader": {},
+    "gist_lazy_loader": {
+      "main": "lazy_loader.js"
+    },
     "npm:fetch-jsonp@1.0.0": {
       "map": {
         "es6-promise": "npm:es6-promise@2.3.0"
