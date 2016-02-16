@@ -38,10 +38,23 @@
         QUnit.load()
       })
 
-      QUnit.asyncTest('it creates gist-files', function( assert ) {
+      QUnit.test('it creates gist-files as many as gists', function(assert) {
+        var gists     = document.getElementsByClassName('gist')
         var gistFiles = document.getElementsByClassName('gist-file')
 
-        assert.equal(4, gistFiles.length)
+        assert.equal(gists.length, gistFiles.length)
+      })
+
+      QUnit.test('it inserts at least one github stylesheet', function(assert) {
+        var githubStylesheets = []
+
+        Array.from(document.getElementsByTagName('link')).forEach(function(stylesheet){ 
+          if (stylesheet.getAttribute('href').includes('github')) {
+            githubStylesheets.push(stylesheet)
+          }
+        })
+
+        assert.notEqual(0, githubStylesheets.length)
       })
     })
   </script>
