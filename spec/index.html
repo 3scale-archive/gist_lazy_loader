@@ -11,18 +11,38 @@
 </head>
 <body>
   <div id='qunit'></div>
-  <div id='qunit-fixture'></div>
+
+  <div id='qunit-fixture'>
+    <article>
+      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
+    </article>
+    <article>
+      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
+    </article>
+    <article>
+      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
+    </article>
+    <article>
+      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
+    </article>
+  </div>
+
   <script>
     QUnit.config.autostart = false
 
-    System.import('gist_lazy_loader/lazy_loader').then(function(){
+    System.import('gist_lazy_loader/lazy_loader').then(function(m){
       
-      // QUnit.test( 'hello test', function( assert ) {
-        // assert.ok( 0 === '1', 'Passed!' );
-      // });
+      m.lazyLoad().then(function() {
+        QUnit.config.autostart = true
 
-      QUnit.config.autostart = true
-      QUnit.load()
+        QUnit.load()
+      })
+
+      QUnit.asyncTest('it creates gist-files', function( assert ) {
+        var gistFiles = document.getElementsByClassName('gist-file')
+
+        assert.equal(4, gistFiles.length)
+      })
     })
   </script>
 </body>
