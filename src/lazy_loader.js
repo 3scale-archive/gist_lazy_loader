@@ -36,7 +36,7 @@ const insertGistElement = function (gist, html) {
   gist.appendChild(gistElement)
 }
 
-export function lazyLoad () {
+export function lazyLoad (callback) {
   let gists = Array.from(document.getElementsByTagName('gist'))
 
   gists.forEach(function(gist) {
@@ -60,6 +60,9 @@ export function lazyLoad () {
             insertGistElement(gist, json.div)
           })
 
+          if(typeof callback === 'function') {
+            callback()
+          }
         }).catch(function (ex) {
           console.log('parsing failed', ex)
         })
