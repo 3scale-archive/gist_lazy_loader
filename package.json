@@ -1,6 +1,6 @@
 {
   "name": "gist_lazy_loader",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Lazy loader for github git",
   "main": "src/lazy_loader.js",
   "git": "https://github.com/3scale/gist_lazy_loader",
