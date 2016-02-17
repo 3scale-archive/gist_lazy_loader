@@ -21,7 +21,7 @@ jspm install npm:gist_lazy_loader
 ```javascript
 import { lazyLoad } from 'gist_lazy_loader'
 
-var = document.getElementsByTagName('script')
+var nodeList = document.getElementsByTagName('script')
 
 lazyLoad(nodeList)
 ``` 
