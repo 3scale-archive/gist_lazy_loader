@@ -10,18 +10,20 @@ jspm install npm:gist_lazy_loader
 ### Code Example
 
 ```
-<article>
-  <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
-</article>
-<article>
-  <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
-</article>
+<div id='container'>
+  <p>1</p>
+  <script data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php'></script>
+  <p>2</p>
+  <script data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php'></script>
+</div>
 ```
 
 ```javascript
 import { lazyLoad } from 'gist_lazy_loader'
 
-lazyLoad()
+var = document.getElementsByTagName('script')
+
+lazyLoad(nodeList)
 ``` 
 
 ## Tests

@@ -13,18 +13,16 @@
   <div id='qunit'></div>
 
   <div id='qunit-fixture'>
-    <article>
-      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
-    </article>
-    <article>
-      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
-    </article>
-    <article>
-      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
-    </article>
-    <article>
-      <gist data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php' />
-    </article>
+    <div id='container'>
+      <p>1</p>
+      <script data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php'></script>
+      <p>2</p>
+      <script data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php'></script>
+      <p>3</p>
+      <script data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php'></script>
+      <p>4</p>
+      <script data-src='https://gist.github.com/jerzyn/9689187.js?file=require-plugin.php'></script>
+    </div>
   </div>
 
   <script>
@@ -32,7 +30,9 @@
 
     System.import('gist_lazy_loader/lazy_loader').then(function(m){
       
-      m.lazyLoad().then(function() {
+      var nodeList = document.getElementsByTagName('script')
+
+      m.lazyLoad(nodeList).then(function() {
         QUnit.config.autostart = true
 
         QUnit.load()

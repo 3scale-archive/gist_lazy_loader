@@ -25,7 +25,7 @@ const insertStylesheetElement = function (gist, href) {
   stylesheetElement.setAttribute('type', 'text/css')
   stylesheetElement.setAttribute('href', href)
   
-  gist.appendChild(stylesheetElement)
+  gist.parentNode.insertBefore(stylesheetElement, gist.nextSibling)
 }
 
 const insertGistElement = function (gist, html) {
@@ -33,11 +33,12 @@ const insertGistElement = function (gist, html) {
 
   gistElement.innerHTML = html
 
-  gist.appendChild(gistElement)
+  gist.parentNode.insertBefore(gistElement, gist.nextSibling)
 }
 
-export function lazyLoad () {
-  let gists    = Array.from(document.getElementsByTagName('gist'))
+// @param [NodeList] nodeList
+export function lazyLoad (nodeList = []) {
+  let gists    = Array.from(nodeList)
   let requests = []
 
   gists.forEach(function(gist) {

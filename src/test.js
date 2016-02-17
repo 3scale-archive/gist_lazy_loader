@@ -1,3 +1,5 @@
 import { lazyLoad } from 'gist_lazy_loader/lazy_loader'
 
-window.load = lazyLoad()
+let nodeList = document.getElementsByTagName('script')
+
+window.load = lazyLoad(nodeList)
